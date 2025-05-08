@@ -511,32 +511,32 @@ export const inputJSON = [
 
 export const expectedOutputXMindMark = 
 `Central Topic
-    - Main Topic 1 [^1]
-        - Subtopic 1 [2]
-            - Subtopic 1 [B1]
-            - Subtopic 2 [B1][B2]
-            - Subtopic 3 [B2]
-            [B1]: title1
-            [B2]: title2
-        - Subtopic 2
-        - Subtopic 3 [^2]
-            - Subtopic 1 [B]
-            - Subtopic 2 [B]
-            - Subtopic 3 [B]
-            [B]: title2
-    - Main Topic 2 [1]
-    - Main Topic 3
-        - Subtopic 1
-            - Subtopic 1 [^3][S1]
-            - Subtopic 2 [B][S1][S2]
-            - Subtopic 3 [B][S1][S2]
-            - Subtopic 4 [S2]
-            [S1]: Summary 1
-                - Subtopic 1
-                - Subtopic 2
-                - Subtopic 3
-            [S2]: Summary 2
-        - Subtopic 2
-        - Subtopic 3
-    - Main Topic 4 [3]
+- Main Topic 1 [^1]
+    - Subtopic 1 [2]
+        - Subtopic 1 [B1]
+        - Subtopic 2 [B1][B2]
+        - Subtopic 3 [B2]
+        [B1]: title1
+        [B2]: title2
+    - Subtopic 2
+    - Subtopic 3 [^2]
+        - Subtopic 1 [B]
+        - Subtopic 2 [B]
+        - Subtopic 3 [B]
+        [B]: title2
+- Main Topic 2 [1]
+- Main Topic 3
+    - Subtopic 1
+        - Subtopic 1 [^3][S1]
+        - Subtopic 2 [B][S1][S2]
+        - Subtopic 3 [B][S1][S2]
+        - Subtopic 4 [S2]
+        [S1]: Summary 1
+            - Subtopic 1
+            - Subtopic 2
+            - Subtopic 3
+        [S2]: Summary 2
+    - Subtopic 2
+    - Subtopic 3
+- Main Topic 4 [3]
 `

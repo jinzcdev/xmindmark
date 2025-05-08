@@ -143,7 +143,8 @@ function isOrderInsideRange(range: ClosedRange, order: number): boolean {
 }
 
 function makeIndentOfLine({ depth }: Pick<TopicScope, 'depth'>): string {
-  return Array.from({ length: depth }).reduce<string>(prevIndent => prevIndent.concat('    '), '')
+  return depth <= 1 ?
+    '' : Array.from({ length: depth - 1 }).reduce<string>(prevIndent => prevIndent.concat('    '), '')
 }
 
 function makePrefixOfLine({ depth, type }: TopicScope): string {
@@ -225,7 +226,7 @@ function makeIdentifyBoundaries(topic: TopicModel): Boundary[] {
 
   if (topic.boundaries.length === 1) return [{ ...topic.boundaries[0], identifier: 'B' }]
 
-  return topic.boundaries.map((boundary, i) => ({ ...boundary, identifier: `B${i + 1}`}))
+  return topic.boundaries.map((boundary, i) => ({ ...boundary, identifier: `B${i + 1}` }))
 }
 
 function makeIdentifySummaries(topic: TopicModel): Summary[] {
@@ -237,7 +238,7 @@ function makeIdentifySummaries(topic: TopicModel): Summary[] {
     && topic.children.summary.length === topic.summaries.length
   ) {
     const summaries = topic.summaries.map((summary, i) => {
-      const title = topic.children!.summary?.find(({ id }) => id === summary.topicId )?.title
+      const title = topic.children!.summary?.find(({ id }) => id === summary.topicId)?.title
 
       return typeof title !== 'undefined'
         ? { ...summary, title, identifier: `S${i + 1}` }
