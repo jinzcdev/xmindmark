@@ -19,7 +19,7 @@ export const resetCommand = new Command('reset')
 
 export async function fromActionHandler(xmindFilePath: string, outputFilePath: string | undefined) {
   const xmindFile = readFileSync(xmindFilePath)
-  const xmindmarkContent = await parseXMindToXMindMarkFile(xmindFile)
+  const xmindmarkContent = await parseXMindToXMindMarkFile(xmindFile.buffer as ArrayBuffer);
 
   if (outputFilePath) {
     let outputPath = resolve(outputFilePath)
@@ -44,7 +44,7 @@ export const fromCommand = new Command('from')
   .description('Generate .xmindmark file from other types of file')
   .action(fromActionHandler)
 
-export async function mainActionHandler(files: string[], options: CLIOptions, command: Command) {  
+export async function mainActionHandler(files: string[], options: CLIOptions, command: Command) {
   if (files.length === 0) command.help()
 
   const { format, outputDir } = options
