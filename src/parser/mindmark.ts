@@ -156,7 +156,7 @@ function addLine(line: string, status: any) {
   }
 }
 
-export function createMapByXMindMark(raw = 'Central Topic'): any {
+export function createMapByXMindMark(raw = 'Central Topic', isDark: boolean = false): any {
   const lines = raw.trim().split('\n')
 
   /// The First Line must be Central Topic
@@ -188,6 +188,6 @@ export function createMapByXMindMark(raw = 'Central Topic'): any {
     addRelationship(map, source, status.numberedTopics[number], { title })
   })
 
-  setTheme(map)
+  setTheme(map, isDark)
   return map
 }

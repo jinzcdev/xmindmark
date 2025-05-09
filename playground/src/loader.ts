@@ -23,13 +23,15 @@ export async function loadFileAsText(file: File): Promise<string> {
   })
 }
 
-export function downloadFile(content: ArrayBuffer, fileName: string) {
+export function downloadFile(content: ArrayBuffer | Blob, fileName: string) {
   const downloader = document.createElement('a')
   downloader.style.setProperty('display', 'none')
   document.body.appendChild(downloader)
 
-  const blob = new Blob([content])
-  const url = URL.createObjectURL(blob)
+  const url = content instanceof Blob 
+    ? URL.createObjectURL(content) 
+    : URL.createObjectURL(new Blob([content]))
+
   downloader.href = url
   downloader.download = fileName
   downloader.click()
