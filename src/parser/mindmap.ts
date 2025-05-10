@@ -240,6 +240,8 @@ export const addTopic = (parentObject, mainTopic = "Main Topic", options = {}) =
     id: UUID(),
     title: mainTopic,
     titleUnedited: true,
+    boundaries: [],
+    summaries: [],
     ...options
   }
   parentObject.children.attached.push(topicObject)
@@ -331,6 +333,8 @@ export const addSingleSummary = (parentObject, topicObject, options = {}) => {
     id: UUID(),
     title: "Summary",
     titleUnedited: true,
+    boundaries: [],
+    summaries: [],
     ...options
   }
   parentObject.children.summary = parentObject.children.summary || []

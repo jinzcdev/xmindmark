@@ -98,4 +98,26 @@ central topic
 
 
     })
+
+    it('Subtopics with boundaries', () => {
+        let map = createMapByXMindMark(`
+central topic
+* topic 1 [S]
+* topic 2 [S]
+[S] summary topic
+    - subtopic 1 [B]
+    - subtopic 2 [B]
+    [B] boundary topic
+    `)
+        let summaryTopic = map.rootTopic.children.summary[0]
+        strictEqual('summary topic', summaryTopic.title)
+        strictEqual('subtopic 1 ', summaryTopic.children.attached[0].title)
+        strictEqual('subtopic 2 ', summaryTopic.children.attached[1].title)
+        let summary = map.rootTopic.summaries[0]
+        strictEqual('(0,1)', summary.range)
+        strictEqual(summaryTopic.id, summary.topicId)
+        let boundary = summaryTopic.boundaries[0]
+        strictEqual('(0,1)', boundary.range)
+        strictEqual('boundary topic', boundary.title)
+    })
 })

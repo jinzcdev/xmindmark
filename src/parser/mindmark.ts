@@ -106,7 +106,7 @@ function addLine(line: string, status: any) {
       topicObject.title = line
 
       parentObject.boundaries
-        .filter(b => b.name == name)
+        ?.filter(b => b.name == name)
         .some(b => {
           let index = parentObject.children.attached.indexOf(topicObject)
 
@@ -133,7 +133,7 @@ function addLine(line: string, status: any) {
       topicObject.title = line
 
       parentObject.summaries
-        .filter(b => b.name == name)
+        ?.filter(b => b.name == name)
         .some(b => {
           let index = parentObject.children.attached.indexOf(topicObject)
 
