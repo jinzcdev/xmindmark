@@ -99,6 +99,36 @@ central topic
 
     })
 
+    it('SubSubtopics', () => {
+        let map = createMapByXMindMark(`
+central topic
+- subtopic 1[S]
+    - subsubtopic 1
+[S] summary topic
+    - summarySubtopic 1
+    - summarySubtopic 2
+        `)
+
+        let subtopic1 = map.rootTopic.children.attached[0];
+        strictEqual('subtopic 1', subtopic1.title);
+
+        // Verify subtopic 1's child topic, now there's only one child
+        strictEqual('subsubtopic 1', subtopic1.children.attached[0].title);
+
+        // Verify summary topic
+        let summaryTopic = map.rootTopic.children.summary[0];
+        strictEqual('summary topic', summaryTopic.title);
+
+        // Verify child topics under summary topic
+        strictEqual('summarySubtopic 1', summaryTopic.children.attached[0].title);
+        strictEqual('summarySubtopic 2', summaryTopic.children.attached[1].title);
+
+        // Verify summary relationship
+        let summary = map.rootTopic.summaries[0];
+        strictEqual('(0,0)', summary.range);
+        strictEqual(summaryTopic.id, summary.topicId);
+    })
+
     it('Subtopics with boundaries', () => {
         let map = createMapByXMindMark(`
 central topic

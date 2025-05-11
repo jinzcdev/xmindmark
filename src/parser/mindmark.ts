@@ -43,6 +43,23 @@ function addLine(line: string, status: any) {
 
     status.lastTopic = topicObject
 
+    // Update levels array, setting summary topic as new parent topic level
+    // Use appropriate indentation level to ensure subsequent subtopics can correctly identify their parent
+    let summaryLevel = {
+      parent: topicObject,
+      indent: indent + 4, // Reserve indentation level for subtopics
+      boundaries: [],
+      summaries: []
+    }
+
+    // Add new level or replace existing level with same indentation
+    const existingLevelIndex = status.levels.findIndex(l => l.indent === indent + 4)
+    if (existingLevelIndex >= 0) {
+      status.levels[existingLevelIndex] = summaryLevel
+    } else {
+      status.levels.push(summaryLevel)
+    }
+
     return
   }
 
